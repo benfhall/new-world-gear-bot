@@ -133,7 +133,7 @@ async def help(ctx):
         color=0xE51837
     )
     embed.set_thumbnail(url=bot.user.avatar_url)
-    embed.add_field(name="Commands", value="Find the commands [here](https://github.com/Swidex/new-world-gear-bot)")
+    embed.add_field(name="Commands", value="Find the commands [here](https://github.com/Swidex/new-world-gear-bot#commands)")
     embed.add_field(name="Invite", value="Invite this bot [here](https://discord.com/api/oauth2/authorize?client_id=899228215204282380&permissions=347200&scope=bot)")
     await ctx.channel.send(embed=embed)
 
