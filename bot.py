@@ -40,7 +40,7 @@ async def gear(ctx, target: discord.User=None):
     embed.add_field(name="Gear Score",value=str(await database.pull_by_index(index, "gs")).title())
     embed.add_field(name="Primary Weapon",value=str(await database.pull_by_index(index, "primary")).title())
     img_link = str(await database.pull_by_index(index, "secondary")).title()
-    if validators.url(img_link) and "http" in img_link":
+    if validators.url(img_link) and "http" in img_link:
         embed.add_field(name="Secondary Weapon",value=img_link)
 
     embed.set_image(url=str(await database.pull_by_index(index, "img")))
