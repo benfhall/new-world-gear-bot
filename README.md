@@ -18,7 +18,7 @@
 > Usage: `!windows [field]`
 > 
 > Valid [field] parameters:
-> - lvl, gs, primary, secondary, img
+> - ign, lvl, gs, primary, secondary, img
 > 
 > Valid [primary] and [secondary] parameters:
 >   - fire staff, life staff, ice gauntlet, bow, musket, rapier, sword, hammer, great axe, spear, hatchet

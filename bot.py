@@ -35,9 +35,9 @@ async def gear(ctx, target: discord.User=None):
         title=target.name + "'s Gear",
         color=0xE51837
     )
+    embed.add_field(name="IGN",value=str(await database.pull_by_index(index, "ign")).title())
     embed.add_field(name="Level",value=str(await database.pull_by_index(index, "level")).title())
     embed.add_field(name="Gear Score",value=str(await database.pull_by_index(index, "gs")).title())
-    embed.add_field(name = chr(173), value = chr(173)) # line break
     embed.add_field(name="Primary Weapon",value=str(await database.pull_by_index(index, "primary")).title())
     embed.add_field(name="Secondary Weapon",value=str(await database.pull_by_index(index, "secondary")).title())
 
@@ -72,6 +72,10 @@ async def update(ctx, field=None):
 
     # update name
     await database.push(ctx.author.id, "name", ctx.author.name)
+
+    if field == None or str(field) == "ign":
+        res = await text_res(ctx.author,'```What is your in-game name?```')
+        await database.push(ctx.author.id, "ign", res)
 
     # set lvl
     if field == None or str(field) == "lvl":
