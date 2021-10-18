@@ -11,7 +11,7 @@ db_dict = {
     "date":7,
     "name":8,
     "ign":9,
-    "company":10.
+    "company":10,
     "armor":11
 }
 
