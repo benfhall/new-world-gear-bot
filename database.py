@@ -12,7 +12,8 @@ db_dict = {
     "name":8,
     "ign":9,
     "company":10,
-    "armor":11
+    "faction":11,
+    "armor":12
 }
 
 class Database():
