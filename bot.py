@@ -89,7 +89,7 @@ async def update(ctx, field=None):
     # set faction
     if field == None or str(field) == "faction":
         res = await text_res(ctx.author,'```What faction are you in?```')
-        if res in factions:
+        if res.lower() in factions:
             await database.push(ctx.author.id, "faction", res)
         else:
             await ctx.author.send("Invalid response, skipping/aborting update.")
