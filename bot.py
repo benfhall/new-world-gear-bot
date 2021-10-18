@@ -76,7 +76,7 @@ async def update(ctx, field=None):
     except ValueError:
         field = None
         await ctx.author.send("Not found in database, running entire update process.")
-    await ctx.channel.send("If you make any errors, you can go back anytime after by doing `!update [field]`.\nThe field will be listed after the question around brackets, [field].")
+    await ctx.author.send("If you make any errors, you can go back anytime after by doing `!update [field]`.\nThe field will be listed after the question around brackets, [field].")
 
     # update name
     await database.push(ctx.author.id, "name", ctx.author.name)
