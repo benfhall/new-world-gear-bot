@@ -64,7 +64,7 @@ async def text_res(member, question):
         try:
             msg = await bot.wait_for('message', check = lambda x: x.channel == member.dm_channel and x.author == member, timeout=60)
         except asyncio.TimeoutError:
-            return
+            return "n/a"
         finally:
             return msg.content
 

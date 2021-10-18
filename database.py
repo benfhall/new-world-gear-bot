@@ -56,7 +56,7 @@ class Database():
         except ValueError:
             # populate new entry with data
             col = db_dict[key] - 1
-            row_data = [0] * len(db_dict)
+            row_data = ["N/A"] * len(db_dict)
             row_data[0] = str(uid)
             row_data[col] = str(value)
             self.sheet.append_row(row_data)
