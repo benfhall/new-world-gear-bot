@@ -13,6 +13,7 @@ database = Database()
 weapon_types = ["fire staff","ice gauntlet","life staff","bow","musket","sword","great axe","hatchet","hammer","spear","rapier"]
 armor_types = ["light", "medium", "heavy"]
 factions = ["covenant","marauder","syndicate"]
+fac_color = { "covenant":0xf0c400, "marauder":0x16801d, "syndicate":0x8a10c7}
 
 @bot.event
 async def on_ready():
@@ -33,9 +34,11 @@ async def gear(ctx, target: discord.User=None):
         await ctx.channel.send("```" + target.name + " was not found in the gear database.```")
 
     # create return embed
+    
+
     embed = discord.Embed(
         title=target.name + "'s Gear",
-        color=0xE51837
+        color=fac_color.get(str(await database.pull_by_index(index, "faction")).lower(),0x000000)
     )
     embed.description = str(await database.pull_by_index(index, "company")).title()
     embed.add_field(name="IGN",value=str(await database.pull_by_index(index, "ign")).title())
