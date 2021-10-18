@@ -66,6 +66,8 @@ async def text_res(member, question):
         except asyncio.TimeoutError:
             return "n/a"
         finally:
+            if msg.content[0] == "=":
+                raise ValueError
             return msg.content
 
 @bot.command(pass_context=True)
