@@ -44,7 +44,7 @@ async def gear(ctx, target: discord.User=None):
     embed.add_field(name="IGN",value=str(await database.pull_by_index(index, "ign")).title())
     embed.add_field(name="Level",value=str(await database.pull_by_index(index, "level")).title())
     embed.add_field(name="Gear Score",value=str(await database.pull_by_index(index, "gs")).title())
-    embed.add_field(name="Armor Weight",value=str(await database.pull_by_index(index, "gs")).title())
+    embed.add_field(name="Armor Weight",value=str(await database.pull_by_index(index, "armor")).title())
     embed.add_field(name="Primary Weapon",value=str(await database.pull_by_index(index, "primary")).title())
     embed.add_field(name="Secondary Weapon",value= str(await database.pull_by_index(index, "secondary")).title())
 
