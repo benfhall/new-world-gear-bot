@@ -11,6 +11,8 @@ bot = commands.Bot(command_prefix="!", help_command=None)
 
 database = Database()
 weapon_types = ["fire staff","ice gauntlet","life staff","bow","musket","sword","great axe","hatchet","hammer","spear","rapier"]
+armor_types = ["light", "medium", "heavy"]
+factions = ["covenant","marauder","syndicate"]
 
 @bot.event
 async def on_ready():
@@ -35,9 +37,11 @@ async def gear(ctx, target: discord.User=None):
         title=target.name + "'s Gear",
         color=0xE51837
     )
+    embed.description = str(await database.pull_by_index(index, "company")).title()
     embed.add_field(name="IGN",value=str(await database.pull_by_index(index, "ign")).title())
     embed.add_field(name="Level",value=str(await database.pull_by_index(index, "level")).title())
     embed.add_field(name="Gear Score",value=str(await database.pull_by_index(index, "gs")).title())
+    embed.add_field(name="Armor Weight",value=str(await database.pull_by_index(index, "gs")).title())
     embed.add_field(name="Primary Weapon",value=str(await database.pull_by_index(index, "primary")).title())
     embed.add_field(name="Secondary Weapon",value= str(await database.pull_by_index(index, "secondary")).title())
 
@@ -79,6 +83,19 @@ async def update(ctx, field=None):
         res = await text_res(ctx.author,'```What is your in-game name?```')
         await database.push(ctx.author.id, "ign", res)
 
+    # set faction
+    if field == None or str(field) == "faction":
+        res = await text_res(ctx.author,'```What faction are you in?```')
+        if res in factions:
+            await database.push(ctx.author.id, "faction", res)
+        else:
+            await ctx.author.send("Invalid response, skipping/aborting update.")
+
+    # set company
+    if field == None or str(field) == "company":
+        res = await text_res(ctx.author,'```What is the name of your company in game?```')
+        await database.push(ctx.author.id, "company", res)
+
     # set lvl
     if field == None or str(field) == "lvl":
         res = await text_res(ctx.author,'```What level is your character currently in New World? (1-60)```')
@@ -101,6 +118,14 @@ async def update(ctx, field=None):
             else:
                 raise ValueError
         except ValueError:
+            await ctx.author.send("Invalid response, skipping/aborting update.")
+
+    # set armor type
+    if field == None or str(field) == "armor":
+        res = str(await text_res(ctx.author,'```What is the weight of your armor? (i.e light, medium, heavy)```')).lower()
+        if res in armor_types:
+            await database.push(ctx.author.id, "armor", res)
+        else:
             await ctx.author.send("Invalid response, skipping/aborting update.")
 
     # set primary

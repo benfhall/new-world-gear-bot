@@ -10,7 +10,9 @@ db_dict = {
     "img":6,
     "date":7,
     "name":8,
-    "ign":9
+    "ign":9,
+    "company":10.
+    "armor":11
 }
 
 class Database():
